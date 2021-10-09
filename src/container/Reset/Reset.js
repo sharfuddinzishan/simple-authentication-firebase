@@ -25,11 +25,11 @@ const Reset = () => {
             <h1 className="text-center text-light">Rest Panel</h1>
             {error.length ? <p className="h6 text-muted">{error}</p> : ''}
             <form onSubmit={handleResetForm}>
-                <div class="mb-3">
-                    <label class="form-label">Email address</label>
-                    <input onBlur={handleInput} type="email" class="form-control" />
+                <div className="mb-3">
+                    <label className="form-label">Email address</label>
+                    <input onBlur={handleInput} type="email" className="form-control" />
                 </div>
-                <button type="submit" class="btn btn-primary">Reset</button>
+                <button type="submit" className="btn btn-primary">Reset</button>
             </form>
         </>
     );

@@ -5,7 +5,7 @@ import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from '
 initialization();
 const Register = () => {
     const auth = getAuth();
-    const [user, getUser] = useState({
+    const [user, setUser] = useState({
         displayName: '',
         email: '',
         isRegistered: false
@@ -26,7 +26,12 @@ const Register = () => {
         e.preventDefault();
         createUserWithEmailAndPassword(auth, user?.email, pass)
             .then(response => {
-                user['isRegistered'] = true;
+                const copyUser = {
+                    displayName: user.displayName,
+                    email: user.email,
+                    isLogin: true
+                }
+                setUser(copyUser);
                 setError('');
                 sendVerification();
             })
@@ -45,21 +50,21 @@ const Register = () => {
             <h1 className="text-center text-light">Register</h1>
             {error.length ? <p className="h6 text-muted">{error}</p> : ''}
             <form onSubmit={handleRegistrationForm}>
-                <div class="mb-3">
-                    <label class="form-label">Name</label>
-                    <input onBlur={handleInput} type="text" class="form-control" />
+                <div className="mb-3">
+                    <label className="form-label">Name</label>
+                    <input onBlur={handleInput} type="text" className="form-control" />
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Email address</label>
-                    <input onBlur={handleInput} type="email" class="form-control" />
-                    <span id="emailHelp" class="form-text">We'll never share your email with anyone else.</span>
+                <div className="mb-3">
+                    <label className="form-label">Email address</label>
+                    <input onBlur={handleInput} type="email" className="form-control" />
+                    <span id="emailHelp" className="form-text">We'll never share your email with anyone else.</span>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Password</label>
-                    <input onBlur={handleInput} type="password" class="form-control" />
-                    <span id="passwordHelpInline" class="form-text">Must be 6-20 characters long.</span>
+                <div className="mb-3">
+                    <label className="form-label">Password</label>
+                    <input onBlur={handleInput} type="password" className="form-control" />
+                    <span id="passwordHelpInline" className="form-text">Must be 6-20 characters long.</span>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary">Submit</button>
             </form>
         </>
     );

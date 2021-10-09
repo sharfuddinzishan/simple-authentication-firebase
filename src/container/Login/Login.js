@@ -4,7 +4,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const Login = () => {
     const auth = getAuth();
-    const [user, getUser] = useState({
+    const [user, setUser] = useState({
         displayName: '',
         email: '',
         isLogin: false
@@ -28,6 +28,7 @@ const Login = () => {
                     email: response.email,
                     isLogin: true
                 }
+                setUser(copyUser);
                 setError('');
             })
             .catch(error => {
@@ -39,15 +40,15 @@ const Login = () => {
             <h1 className="text-center text-light">Login Panel</h1>
             {error.length ? <p className="h6 text-muted">{error}</p> : ''}
             <form onSubmit={handleLoginForm}>
-                <div class="mb-3">
-                    <label class="form-label">Email address</label>
-                    <input onBlur={handleInput} type="email" class="form-control" />
+                <div className="mb-3">
+                    <label className="form-label">Email address</label>
+                    <input onBlur={handleInput} type="email" className="form-control" />
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Password</label>
-                    <input onBlur={handleInput} type="password" class="form-control" />
+                <div className="mb-3">
+                    <label className="form-label">Password</label>
+                    <input onBlur={handleInput} type="password" className="form-control" />
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" className="btn btn-primary">Login</button>
             </form>
         </>
     );
